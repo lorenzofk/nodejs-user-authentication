@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
  *
  * @returns JSON
  */
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
 
     let id = req.params.id;
 
@@ -43,7 +43,7 @@ exports.delete = (req, res) => {
         return res.status(404).send({'msg': 'The `id` param is required.'});
     }
 
-    repository.delete(id)
+    await repository.delete(id)
         .then((result) => {
             return res.json(result);
         }).catch((err) => {
@@ -59,9 +59,9 @@ exports.delete = (req, res) => {
  *
  * @returns JSON
  */
-exports.list = (req, res) => {
+exports.list = async (req, res) => {
 
-    repository.getAll()
+    await repository.getAll()
         .then((result) => {
             return res.json(result);
         }).catch((err) => {
@@ -77,7 +77,7 @@ exports.list = (req, res) => {
  *
  * @returns JSON
  */
-exports.show = (req, res) => {
+exports.show = async (req, res) => {
     
     let id = req.params.id;
 
@@ -85,7 +85,7 @@ exports.show = (req, res) => {
         return res.status(404).send({'msg': 'The `id` param is required.'});
     }
 
-    repository.getById(id)
+    await repository.getById(id)
         .then((result) => {
             if (result === null) {
                 return res.status(404).json({'msg': 'User not found.'});
