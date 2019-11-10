@@ -1,7 +1,7 @@
 'use strict';
 
-var userModel = require('../models/user.model').User;
-var userRepository = require('../repositories/user.repository');
+const { User, validate } = require('../models/user.model');
+const repository = require('../repositories/user.repository');
 
 /**
  * Create a new user
@@ -10,11 +10,17 @@ var userRepository = require('../repositories/user.repository');
  *
  * @returns JSON
  */
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
-    let model = new userModel(req.body);
+    const { error } = validate(req.body);
+    
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+    
+    let model = new User(req.body);
 
-    userRepository.create(model)
+    await repository.create(model)
         .then((result) => {
             res.status(201).json(result);
         }).catch((err) => {
@@ -37,7 +43,7 @@ exports.delete = (req, res) => {
         return res.status(404).send({'msg': 'The `id` param is required.'});
     }
 
-    userRepository.delete(id)
+    repository.delete(id)
         .then((result) => {
             return res.json(result);
         }).catch((err) => {
@@ -55,7 +61,7 @@ exports.delete = (req, res) => {
  */
 exports.list = (req, res) => {
 
-    userRepository.getAll()
+    repository.getAll()
         .then((result) => {
             return res.json(result);
         }).catch((err) => {
@@ -79,7 +85,7 @@ exports.show = (req, res) => {
         return res.status(404).send({'msg': 'The `id` param is required.'});
     }
 
-    userRepository.getById(id)
+    repository.getById(id)
         .then((result) => {
             if (result === null) {
                 return res.status(404).json({'msg': 'User not found.'});
