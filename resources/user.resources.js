@@ -1,6 +1,7 @@
 'use strict';
 
-const { User, validate } = require('../models/user.model');
+const User = require('../models/user.model').User;
+const validate = require('../models/validation/user.validator').validate;
 const repository = require('../repositories/user.repository');
 
 /**
@@ -15,21 +16,22 @@ exports.create = async (req, res) => {
     const { error } = validate(req.body);
     
     if (error) {
-        return res.status(400).send(error.details[0].message);
+        return res.status(400).send({"message": error.details[0].message});
     }
     
     let model = new User(req.body);
 
     await repository.create(model)
         .then((result) => {
-            res.status(201).json(result);
-        }).catch((err) => {
-            return res.status(422).send({'msg': err.message});
+            res.status(201).json(result)
+        })
+        .catch((err) => {
+            res.status(422).send({'msg': err.message})
         });
 };
 
 /**
- * Delete an User by id
+ * Remove an User by id
  *
  * @params id
  *
@@ -40,20 +42,20 @@ exports.delete = async (req, res) => {
     let id = req.params.id;
 
     if (id === undefined || ! id.length) {
-        return res.status(404).send({'msg': 'The `id` param is required.'});
+        return res.status(404).send({'message': 'The `id` param is required.'});
     }
 
     await repository.delete(id)
         .then((result) => {
             return res.json(result);
         }).catch((err) => {
-            return res.status(500).send({'msg': err.message});
+            return res.status(500).send({'message': err.message});
         });
 
 };
 
 /**
- * Returns all Users
+ * Return all Users
  *
  * @params id
  *
@@ -65,7 +67,7 @@ exports.list = async (req, res) => {
         .then((result) => {
             return res.json(result);
         }).catch((err) => {
-            return res.status(500).send({'msg': err.message});
+            return res.status(500).send({'message': err.message});
         });
 
 };
@@ -82,17 +84,17 @@ exports.show = async (req, res) => {
     let id = req.params.id;
 
     if (id === undefined || id === '') {
-        return res.status(404).send({'msg': 'The `id` param is required.'});
+        return res.status(404).send({'message': 'The `id` param is required.'});
     }
 
     await repository.getById(id)
         .then((result) => {
             if (result === null) {
-                return res.status(404).json({'msg': 'User not found.'});
+                return res.status(404).json({'message': 'User not found.'});
             }
 
             return res.json(result);
         }).catch((err) => {
-            return res.status(500).send({'msg': err.message});
+            return res.status(500).send({'message': err.message});
         });
 };

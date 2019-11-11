@@ -65,8 +65,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"name" is not allowed to be empty');
+                    assert.equal(body.message, '"name" is not allowed to be empty');
                     
                     done();
                 });
@@ -89,8 +93,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"name" is required');
+                    assert.equal(body.message, '"name" is required');
                     
                     done();
                 });
@@ -112,8 +120,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, `"name" length must be at least ${nameMinLength} characters long`);
+                    assert.equal(body.message, `"name" length must be at least ${nameMinLength} characters long`);
                     
                     done();
                 });
@@ -135,8 +147,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, `"name" length must be less than or equal to ${nameMaxLenght} characters long`);
+                    assert.equal(body.message, `"name" length must be less than or equal to ${nameMaxLenght} characters long`);
                     
                     done();
                 });
@@ -160,8 +176,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"email" is not allowed to be empty');
+                    assert.equal(body.message, '"email" is not allowed to be empty');
                     
                     done();
                 });
@@ -184,8 +204,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"email" is required');
+                    assert.equal(body.message, '"email" is required');
                     
                     done();
                 });
@@ -209,8 +233,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"email" must be a valid email');
+                    assert.equal(body.message, '"email" must be a valid email');
                     
                     done();
                 });
@@ -234,8 +262,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"password" is not allowed to be empty');
+                    assert.equal(body.message, '"password" is not allowed to be empty');
                     
                     done();
                 });
@@ -258,8 +290,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, '"password" is required');
+                    assert.equal(body.message, '"password" is required');
                     
                     done();
                 });
@@ -283,8 +319,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, `"password" length must be at least ${passwordMinLenght} characters long`);
+                    assert.equal(body.message, `"password" length must be at least ${passwordMinLenght} characters long`);
                     
                     done();
                 });
@@ -308,8 +348,12 @@ describe('Users Unit Tests', function () {
 
                     res.should.have.status(400);
                     res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
 
-                    assert.equal(res.error.text, `"password" length must be less than or equal to ${passwordMaxLenght} characters long`);
+                    assert.equal(body.message, `"password" length must be less than or equal to ${passwordMaxLenght} characters long`);
                     
                     done();
                 });
