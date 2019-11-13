@@ -1,13 +1,13 @@
 'use strict';
 
-var chai      = require('chai');
-var chaiHttp  = require('chai-http');
-var server    = require('../app').server;
-var userModel = require('../models/user.model').User;
+const chai      = require('chai');
+const chaiHttp  = require('chai-http');
+const server    = require('../app').server;
+const userModel = require('../models/user.model').User;
 
-var assert = chai.assert;
-var expect = chai.expect;
-var should = chai.should();
+const assert = chai.assert;
+const expect = chai.expect;
+const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -63,7 +63,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -91,7 +91,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -118,7 +118,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -145,7 +145,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -174,7 +174,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -202,7 +202,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -231,7 +231,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -260,7 +260,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -288,7 +288,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -317,7 +317,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
@@ -346,7 +346,7 @@ describe('Users Unit Tests', function () {
 
                     if (err) done(err);
 
-                    res.should.have.status(400);
+                    res.should.have.status(422);
                     res.error.should.have.property('text');
                     
                     let body = JSON.parse(res.error.text);
