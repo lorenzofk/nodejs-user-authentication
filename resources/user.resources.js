@@ -1,7 +1,6 @@
 'use strict';
 
 const User = require('../models/user.model').User;
-const validate = require('../models/validation/user.validator').validate;
 const repository = require('../repositories/user.repository');
 
 /**
@@ -13,12 +12,6 @@ const repository = require('../repositories/user.repository');
  */
 exports.create = async (req, res) => {
 
-    const { error } = validate(req.body);
-    
-    if (error) {
-        return res.status(400).send({"message": error.details[0].message});
-    }
-    
     let model = new User(req.body);
 
     await repository.create(model)
