@@ -47,6 +47,33 @@ describe('Users Unit Tests', function () {
 
     });
 
+    describe('/GET /users/{id}', () => {
+
+        it('it should returns an error because the "id" field should be a valid ObjectID', (done) => {
+
+            let id = 1;
+
+            chai.request(server)
+                .get('/users/' + id)
+                .end((err, res) => {
+
+                    if (err) done(err);
+
+                    res.should.have.status(422);
+                    res.error.should.have.property('text');
+                    
+                    let body = JSON.parse(res.error.text);
+                    
+                    body.should.have.property('message');
+
+                    assert.equal(body.message, `"id" with value "${id}" fails to match the valid mongo id pattern`);
+                    
+                    done();
+                });
+        });
+
+    });
+
     describe('/POST /users', () => {
 
         it('it should returns an error because the "name" field could not be empty', (done) => {
