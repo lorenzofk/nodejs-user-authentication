@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const userSchema = Joi.object().keys({
+const schema = Joi.object().keys({
 
     // name is required
     // name must be a string
@@ -23,4 +23,4 @@ const userSchema = Joi.object().keys({
 
 });
 
-exports.UserRules = userSchema; 
+exports.UserCreateSchema = schema; 
